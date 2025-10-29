@@ -10,27 +10,24 @@
 </header>
 
 <script>
-  // Compute a prefix like "", "../", "../../" depending on how deep the page is.
-  (function () {
-    // Trim trailing slash, split path parts
-    const parts = location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
-    // If you publish on GitHub Pages under https://username.github.io/<repo>/,
-    // the repo name is parts[0]. Depth AFTER repo root:
-    const afterRepo = parts.length > 0 ? parts.length - 1 : 0;
-    const up = afterRepo > 0 ? '../'.repeat(afterRepo) : '';
+(function () {
+  // Remove trailing slashes and split the current path
+  const parts = location.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
 
-    // Set hrefs from data-link
-    document.querySelectorAll('[data-link]').forEach(a => {
-      const target = a.getAttribute('writings') || '';
-       document.querySelectorAll('[data-link]').forEach(a => {
-      const target = a.getAttribute('pdfs') || '';
-          document.querySelectorAll('[data-link]').forEach(a => {
-      const target = a.getAttribute('socials') || '';
-      // Hash links (like #socials) should not get prefixed
-      const href = target.startsWith('#') ? target : (up + target);
-      a.setAttribute('href', href || (up || './'));
-    });
-  })();
+  // If you're on GitHub Pages under https://username.github.io/<repo>/,
+  // treat the repo name as the root and count folders *after* it.
+  const afterRepo = parts.length > 0 ? parts.length - 1 : 0;
+  const up = afterRepo > 0 ? '../'.repeat(afterRepo) : '';
+
+  // Loop through all <a data-link="..."> and fix hrefs
+  document.querySelectorAll('[data-link]').forEach(a => {
+    const target = a.getAttribute('data-link') || '';
+    // Don't prefix hash links like #socials
+    const href = target.startsWith('#') ? target : (up + target);
+    a.setAttribute('href', href || (up || './'));
+  });
+})();
 </script>
+
 
 
