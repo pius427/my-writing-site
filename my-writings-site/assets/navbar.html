@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="#" data-link="">PIUS’s new Upload</a>
+    <a class="brand" href="#" data-link="load-navbar.js">PIUS’s new Upload</a>
     <nav class="nav">
       <a href="#" data-link="writings/">Writings</a>
       <a href="#" data-link="pdfs/">PDFs</a>
@@ -21,10 +21,15 @@
 
     // Set hrefs from data-link
     document.querySelectorAll('[data-link]').forEach(a => {
-      const target = a.getAttribute('data-link') || '';
+      const target = a.getAttribute('writings') || '';
+       document.querySelectorAll('[data-link]').forEach(a => {
+      const target = a.getAttribute('pdfs') || '';
+          document.querySelectorAll('[data-link]').forEach(a => {
+      const target = a.getAttribute('socials') || '';
       // Hash links (like #socials) should not get prefixed
       const href = target.startsWith('#') ? target : (up + target);
       a.setAttribute('href', href || (up || './'));
     });
   })();
 </script>
+
