@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>View PDF —  PIUS’s new Uploads</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script defer src="/assets/scrollreveal.js"></script>
+  <style>
+    .viewer { height: 80vh; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/"> PIUS’s new Uploads</a>
+      <nav class="nav">
+        <a href="/writings/">Writings</a>
+        <a href="/pdfs/">PDFs</a>
+        <a href="/#socials">Socials</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>PDF Viewer</h1>
+    <p><small>If the preview doesn’t show, use the download link below.</small></p>
+
+    <div class="viewer">
+      <object id="pdfFrame" data="" type="application/pdf" width="100%" height="100%">
+        <p>PDF preview unavailable. <a id="downloadLink" class="link" href="#" download>Download instead</a>.</p>
+      </object>
+    </div>
+
+    <p style="margin-top:12px">
+      ← <a class="link" href="/pdfs/">Back to PDF Library</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span>  PIUS’s new Uploads</div>
+  </footer>
+
+ <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const REPO = 'my-writings-site'; // change if needed
+  const path = location.pathname.replace(/\/+$/, '');
+  const i = path.toLowerCase().lastIndexOf('/' + REPO.toLowerCase());
+  const base = i >= 0 ? path.substring(0, i + REPO.length + 1) : '/pdfs/';
+
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  const filePath = file ? (base + 'pdfs/' + file) : '';
+
+  if (file) {
+    document.getElementById('pdfFrame').setAttribute('data', filePath + '#view=FitH');
+    document.getElementById('downloadLink').setAttribute('href', filePath);
+    document.title = `View: ${file} — PIUS’s New Uploads`;
+  } else {
+    document.querySelector('.viewer').innerHTML = '<p>No PDF selected.</p>';
+  }
+</script>
+
+</body>
+</html>

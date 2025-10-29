@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PDF Library — PIUS’s new Upload</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <script defer src="/assets/scrollreveal.js"></script>
+</head>
+<body>
+  <div id="navbar"></div>
+<script src="/assets/load-navbar.js"></script>
+    <div class="container">
+      <a class="brand" href="/">PIUS’s new Upload</a>
+      <nav class="nav">
+        <a href="/writings/">Writings</a>
+        <a href="/pdfs/">PDFs</a>
+        <a href="/#socials">Socials</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>PDF Library</h1>
+    <p>Click “Read” to open in your browser, or “Download” to save a copy.</p>
+
+    <ul class="cards">
+      <!-- Duplicate a <li> per PDF you add in this folder -->
+      <li class="card">
+        <h3>My Poems</h3>
+        <div class="links">
+          <a class="link" href="/pdfs/view.html?file=my-first-upload.pdf">Read</a> •
+          <a class="link" href="/pdfs/i like you.pdf" download>Download</a>
+        </div>
+      </li>
+
+      <li class="card">
+        <h3>Short Stories</h3>
+        <div class="links">
+          <a class="link" href="/pdfs/view.html?file=my-second-upload.pdf">Read</a> •
+          <a class="link" href="/pdfs/short-stories.pdf" download>Download</a>
+        </div>
+      </li>
+    </ul>
+
+    <p class="note" style="margin-top:12px">
+      Put your PDF files in the <code>/pdfs</code> folder. Edit the filenames in the links above to match your actual files.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> PIUS’s new Upload</div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
